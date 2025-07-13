@@ -1,20 +1,19 @@
 import sqlite3
 import functools
+from datetime import datetime  # <-- added import
 
-def log_queries():
-    def decorator(func):
-        @functools.wraps(func)
-        def wrapper(*args, **kwargs):
-            # Extract 'query' argument from args or kwargs to log it
-            query = kwargs.get('query')
-            if not query and len(args) > 0:
-                query = args[0]
-            print(f"Executing SQL query: {query}")
-            return func(*args, **kwargs)
-        return wrapper
-    return decorator
+def log_queries(func):
+    @functools.wraps(func)
+    def wrapper(*args, **kwargs):
+        query = kwargs.get('query')
+        if not query and len(args) > 0:
+            query = args[0]
+        now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        print(f"[{now}] Executing SQL query: {query}")
+        return func(*args, **kwargs)
+    return wrapper
 
-@log_queries()
+@log_queries
 def fetch_all_users(query):
     conn = sqlite3.connect('users.db')
     cursor = conn.cursor()
@@ -23,5 +22,5 @@ def fetch_all_users(query):
     conn.close()
     return results
 
-# Example usage
+# Example usage:
 users = fetch_all_users(query="SELECT * FROM users")
