@@ -1,0 +1,23 @@
+name: Python Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.x"
+
+    - name: Install dependencies
+      run: pip install parameterized
+
+    - name: Run tests
+      run: |
+        cd alx-backend-python/0x03-Unittests_and_integration_tests
+        python3 -m unittest discover
