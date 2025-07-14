@@ -30,5 +30,5 @@ class TestAccessNestedMap(unittest.TestCase):
         self.assertEqual(str(cm.exception), repr(path[len(cm.exception.args[0]) - 1]))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
