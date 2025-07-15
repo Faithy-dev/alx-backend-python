@@ -2,10 +2,11 @@
 """Unit tests for utils.access_nested_map"""
 import unittest
 from parameterized import parameterized
-from test_module.utils import access_nested_map
 
+import sys
+sys.path.append("0x03-Unittests_and_integration_tests")
 
-
+from utils import access_nested_map
 
 class TestAccessNestedMap(unittest.TestCase):
     """Test access_nested_map with normal and exception cases"""
