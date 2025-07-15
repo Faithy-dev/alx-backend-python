@@ -2,7 +2,8 @@
 """Unit tests for utils.access_nested_map"""
 import unittest
 from parameterized import parameterized
-from 0x03-Unittests_and_integration_tests.utils import access_nested_map
+from test_module.utils import access_nested_map
+
 
 
 
